@@ -2,7 +2,16 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'Hiragino Sans'
+import matplotlib.font_manager as fm
+import os
+
+# Mac環境ならHiragino、Linux環境(Streamlit Cloud)ならNoto Sans CJK
+if os.path.exists('/System/Library/Fonts/Hiragino Sans GB.ttc'):
+    plt.rcParams['font.family'] = 'Hiragino Sans'
+else:
+    # Streamlit Cloud (Linux) 用
+    plt.rcParams['font.family'] = 'Noto Sans CJK JP'
+plt.rcParams['axes.unicode_minus'] = False
 from datetime import datetime
 
 # === ページ設定 ===
